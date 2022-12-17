@@ -23,3 +23,24 @@ ui32 ByteArray::length() {
 byte* ByteArray::elements() {
     return Elements;
 }
+
+void ByteArray::deleteArray(){
+    delete[] Elements;
+    Length = 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

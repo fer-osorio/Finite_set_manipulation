@@ -15,4 +15,7 @@ class ByteArray {
     //- Return atributes.
     ui32 length();
     byte* elements();
+    
+    //- Delete array.
+    void deleteArray();
 };

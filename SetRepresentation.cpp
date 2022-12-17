@@ -15,13 +15,45 @@ Set::Set(ui32 length) {
 }
 
 ui32 Set::get_minimum() {
-    int i = 0, j = 0;
-    while( i < container.length() && container.elements()[i] == 0) i++;
-    while( (RIGHT_BIT >> j & container.elements()[i]) == 0) j++;
-
+    int i = 0, j = 0, len = container.length();
+    int elements[] = container.elements();
+    byte selector = LEFT_BIT;
+    while( i < len && elements[i] == 0) i++;
+    //- The set has no elements. This is a just
+    //  a preventive answer; this is not the co-
+    //  rrect answer.
+    if(i==len)  return 0;
+    while( (selector & elements[i]) == 0) {
+        j++;
+        selector >> 1;
+    }
     return i*8 + j;
 }
 
 ui32 Set::get_maximum() {
-    
+    int i = container.Length - 1, j = 7;
+    int elements[] = container.elements();
+    byte selector = RIGTH_BIT;
+    while(i >= 0 && elements == 0) i--;
+    if(i==-1)   return 0;
+    while((selector & elements[i]) == 0) {
+        j--;
+        selector << 1;
+    }
+    return i*8+j;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
