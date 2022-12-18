@@ -9,8 +9,7 @@
 class Set {
     //- Representing the elements inside our set. The idea is:
     // if the bit in the position 'i' (0 <= i < 8) in the byte
-    // of the position 'k' (0 <= k < length(container)) is equal
-    // to 1, then the number 'k*8 + i' is in the set.
+    // of the position 'k' (0 <= k < length(container)) is equal to 1, then the number 'k*8 + i' is in the set.
     //- We can see the container as the "universal" set.
     ByteArray container;
 
@@ -23,4 +22,20 @@ class Set {
 
     ui32 get_minimum();
     ui32 get_maximum();
+    
+    void print();
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+

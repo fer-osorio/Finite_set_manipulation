@@ -1,5 +1,5 @@
 //- Class that encapsulate an array of bytes and its length.
-
+#include<iostream>
 typedef unsigned char byte;
 typedef unsigned int ui32;
 
@@ -12,7 +12,7 @@ class ByteArray {
     ByteArray();
     ByteArray(ui32 _length);
 
-    //- Return atributes.
+    //- Return attributes.
     ui32 length();
     byte* elements();
     
