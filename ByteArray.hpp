@@ -10,6 +10,7 @@ class ByteArray {
     public:
     //- Constructors.
     ByteArray();
+    //- Initializing array of bytes (unsigned char) with _length elements. The default value for all the elements is zero.
     ByteArray(ui32 _length);
 
     //- Return attributes.

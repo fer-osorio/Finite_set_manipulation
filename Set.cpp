@@ -1,6 +1,6 @@
 //-Representing a finite set of non-negative integer numbers.
 
-#include"SetRepresentation.hpp"
+#include"Set.hpp"
 
 //- Constructor with no arguments. Returns the representation of an empty set with no container.
 Set::Set() {
@@ -46,8 +46,28 @@ ui32 Set::get_maximum() {
     return i*8+j;
 }
 
-void print(){
-
+int Set::print(){
+    std::cout << "{";
+    if(container.Length == 0) {
+        std::cout << "}";
+        return 0;
+    }
+    ui32 n = 0, i ,j;
+    bool first = true;
+    byte selector = LEFT_BIT;
+    for(i = 0; i < container.Length; i++) {
+        for(j = 0; j < 8; j++) {
+            if(selector & container[i])
+                if(!first) {
+                    std::cout << ", ";
+                }
+                std::cout << n;
+            n++;
+            first = false;
+        }
+    }
+    std::cout << "}";
+    return 0;
 }
 
 

@@ -1,7 +1,7 @@
 //- Representing a finite set of non-negative integer numbers.
 //  Most left bit of a byte. (10000000).
 #define LEFT_BIT  0x80
-//- Most rigth bit of a byte.(00000001).
+//- Most right bit of a byte.(00000001).
 #define RIGTH_BIT 0x01
 
 #include"ByteArray.hpp"
@@ -19,6 +19,7 @@ class Set {
     //- Constructor for an empty set with a container of 'length'
     // bytes.
     Set(ui32 length);
+    Set(ByteArray ba);
 
     ui32 get_minimum();
     ui32 get_maximum();
