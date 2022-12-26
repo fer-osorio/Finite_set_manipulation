@@ -9,15 +9,23 @@ ByteArray::ByteArray() {
 
 //- Initializing array of bytes (unsigned char) with _length elements. The default value for all the elements is zero.
 ByteArray::ByteArray(ui32 _length) {
-    if(_length == 0)
+    if(_length == 0) {
         Elements = nullptr;
-    else
+        Length = 0;
+    }
+    else {
         Elements = new byte[_length];
-    //- Initializing array with zeros.    
-    for(int i = 0; i < _length; i++)
-        Elements[i] = 0;
+        //- Initializing array with zeros.
+        for(int i = 0; i < _length; i++)
+            Elements[i] = 0;
         
-    Length = _length;
+        Length = _length;
+    }
+}
+
+ByteArray::ByteArray(byte* arr) {
+    Elements = arr;
+    Length = sizeof(arr);
 }
 
 ui32 ByteArray::length() {

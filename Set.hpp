@@ -19,12 +19,14 @@ class Set {
     //- Constructor for an empty set with a container of 'length'
     // bytes.
     Set(ui32 length);
-    Set(ByteArray ba);
+    //- Constructor for a set containing the elements of the array 'elements'.
+    Set(ui32* elements);
 
     ui32 get_minimum();
     ui32 get_maximum();
     
-    void print();
+    int print();
+    ui32 max(ui32* arr);
 };
 
 
