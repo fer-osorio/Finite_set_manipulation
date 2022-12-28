@@ -7,6 +7,7 @@
 #include"ByteArray.hpp"
 
 class Set {
+	public:
     //- Representing the elements inside our set. The idea is:
     // if the bit in the position 'i' (0 <= i < 8) in the byte
     // of the position 'k' (0 <= k < length(container)) is equal to 1, then the number 'k*8 + i' is in the set.
@@ -20,13 +21,18 @@ class Set {
     // bytes.
     Set(ui32 length);
     //- Constructor for a set containing the elements of the array 'elements'.
-    Set(ui32* elements);
+    Set(ui32* elements,ui32 length);
 
     ui32 get_minimum();
     ui32 get_maximum();
     
     int print();
-    ui32 max(ui32* arr);
+    //- Printing a line break after printing the set.
+    void println();
+
+    ui32 max(ui32* arr, ui32 length);
+	//- Prints a number using the binary base.
+    void deleteSet();
 };
 
 

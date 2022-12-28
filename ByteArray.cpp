@@ -23,9 +23,9 @@ ByteArray::ByteArray(ui32 _length) {
     }
 }
 
-ByteArray::ByteArray(byte* arr) {
+ByteArray::ByteArray(byte* arr, ui32 _length) {
     Elements = arr;
-    Length = sizeof(arr);
+    Length = _length;
 }
 
 ui32 ByteArray::length() {
@@ -41,7 +41,33 @@ void ByteArray::deleteArray(){
     Length = 0;
 }
 
+//- Prints a unsigned integer in binary base.
+void printBinary(byte number) {
+    //- Binary representation.
+    byte* bin_rep = new byte[8];
+    byte residue;
+    int i;
+    for(i = 7; i >= 0; i--) {
+        residue = number % 2;
+        //- Saving binary digits in bin_rep.
+        bin_rep[i] = residue;
+        number -= residue;
+        number /= 2;
+    }
+    //- Printing.
+    for(i = 0; i < 8; i++)
+        std::cout << static_cast<ui32>(bin_rep[i]);
+    delete [] bin_rep;
+}
 
+void printBinary(byte* array,ui32 length) {
+    std::cout << "{";
+    for(ui32 i = 0; i < length; i++ ) {
+        if(i) std::cout << ", ";
+        printBinary(array[i]);
+    }
+    std::cout << "}";
+}
 
 
 

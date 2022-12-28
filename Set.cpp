@@ -13,23 +13,21 @@ Set::Set(ui32 length) {
 }
 
 //- Constructor for a set containing the elements of the array 'elements'.
-Set::Set(ui32* elements) {
+Set::Set(ui32* elements,ui32 length) {
     //- Making an empty container big enough to contain all the numbers in the 'elements' array.
-    ui32 size = max(elements)/8 + 1, i, j;
+    ui32 size = max(elements,length)/8 + 1, i, j;
     byte* elemInSet = new byte[size];
     for( i = 0; i < size; i++)
         elemInSet[i] = 0;
 
-    //- Placing the numbers inside the container of class ByteArray.
-    size = sizeofArray(elements);
     ui32 bytesToTheRight, bitsToTheRight, selector;
-    for(i = 0; i < size; i++) {
+    for(i = 0; i < length; i++) {
         bytesToTheRight = elements[i]/8;
         bitsToTheRight = elements[i]%8;
         selector = LEFT_BIT >> bitsToTheRight;
         elemInSet[bytesToTheRight] |= selector;
     }
-    container = ByteArray(elemInSet);
+    container = ByteArray(elemInSet, size);
 }
 
 ui32 Set::get_minimum() {
@@ -69,7 +67,8 @@ ui32 Set::get_maximum() {
 int Set::print(){
     std::cout << "{";
     //- Empty set.
-    if(container.length() == 0) {
+    ui32 len = container.length();
+    if(len == 0) {
         std::cout << "}";
         return 0;
     }
@@ -77,29 +76,40 @@ int Set::print(){
     bool first = true;
     byte selector = LEFT_BIT;
     byte* elements = container.elements();
-    for(i = 0; i < container.length(); i++) {
+    for(i = 0; i < len; i++) {
         for(j = 0; j < 8; j++) {
-            if(selector & elements[i])
-                if(!first) {
+            if((selector & elements[i]) != 0) {
+                if(!first)
                     std::cout << ", ";
-                }
+                first = false;
                 std::cout << n;
+            }
+            selector >>= 1;
             n++;
-            first = false;
         }
+        selector = LEFT_BIT;
     }
     std::cout << "}";
     return 0;
 }
 
+//- Printing a line break after printing the set.
+    void Set::println() {
+        print();
+        std::cout << "\n";
+    }
+
 //- Returns the maximum number of an ui32 array.
-ui32 Set::max(ui32 *arr) {
+ui32 Set::max(ui32 *arr, ui32 length) {
     ui32  maximum = arr[0], i;
-    ui32 arr_size = sizeofArray(arr);
-    for(i = 1; i < arr_size; i++)
+    for(i = 1; i < length; i++)
         if(maximum < arr[i])
             maximum = arr[i];
     return maximum;
+}
+
+void Set::deleteSet() {
+    container.deleteArray();
 }
 
 
