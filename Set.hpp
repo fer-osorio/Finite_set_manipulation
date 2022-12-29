@@ -20,8 +20,12 @@ class Set {
     //- Constructor for an empty set with a container of 'length'
     // bytes.
     Set(ui32 length);
-    //- Constructor for a set containing the elements of the array 'elements'.
+    //- Constructor for a set containing the numbers of the array 'elements'.
+    //- The array members of 'elements' are going to be interpreted as numbers.
     Set(ui32* elements,ui32 length);
+    //- Constructor for a set witch members are determined by 'members'.
+    //- The 'elements' members will be consider direct representation of the set members.
+    Set(byte* elements,ui32 lenght);
 
     ui32 get_minimum();
     ui32 get_maximum();
@@ -30,14 +34,25 @@ class Set {
     //- Printing a line break after printing the set.
     void println();
 
-    ui32 max(ui32* arr, ui32 length);
 	//- Prints a number using the binary base.
     void deleteSet();
+
+	//- Deletes the right zero bytes of the container array.
+	//- This function leafs at leas one byte in the container array.
+    void fit();
 };
 
+//- Union of sets.
+Set operator + (Set set1, Set set2);
 
+//- Intersection of sets.
+Set operator * (Set set1, Set set2);
 
+//- Returns true if the number belongs to the set, otherwise it returns false.
+bool belongs(ui32 number, Set set);
 
+//- Returns a exact copy of this object.
+Set copy(Set original);
 
 
 

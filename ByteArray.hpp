@@ -32,3 +32,19 @@ void printBinary(byte number);
 
 //- Prints the unsigned integers in an array in binary base.
 void printBinary(byte* array, ui32 length);
+
+//- Maximum number of an unsigned integer array.
+ui32 max(ui32* arr, ui32 length);
+
+//- Maximum number of two unsigned integers.
+ui32 max(ui32 num1, ui32 num2);
+
+
+
+
+
+
+
+
+
+
