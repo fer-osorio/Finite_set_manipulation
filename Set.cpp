@@ -171,6 +171,35 @@ Set operator * (Set set1, Set set2) {
     return result;
 }
 
+//- Returns the set '{0,...,upperLimit-1} - set'.
+Set complement(Set set, ui32 upperLimit) {
+    Set result(upperLimit);
+    ui32 threshold = min(set.container.length(), upperLimit), i;
+    byte *elements = set.container.elements(), *elem_result = result.container.elements();
+    for(i = 0; i < threshold; i++)
+        elem_result[i] = byteComplement(elements[i]);
+    for(;i < upperLimit; i++)
+        elem_result[i] = 0xFF;
+    return result;
+}
+
+//- Returns the complement of a set over its own container.
+Set complement(Set set) {
+    return complement(set,set.container.length());
+}
+
+//- Set difference.
+Set operator - (Set set1, Set set2) {
+    ui32 threshold = min(set1.container.length(), set2.container.length()), i;
+    Set result = copy(set1);
+    byte *res_elements = result.container.elements(), *set2_elements = set2.container.elements();
+    //- 'Extracting' the elements of set2 from set1;
+    for(i = 0; i < threshold; i++)
+        res_elements[i] &= byteComplement(set2_elements[i]);
+
+    return result;
+}
+
 //- Returns true if the number belongs to the set, otherwise it returns false.
 bool belongs(ui32 number, Set set) {
     ui32 bytesToTheRight = number/8, bitsToTheRight = number%8;
@@ -179,6 +208,18 @@ bool belongs(ui32 number, Set set) {
     if(set.container.elements()[bytesToTheRight] & LEFT_BIT >> bitsToTheRight)
         return true;
     return false;
+}
+
+//- Equality between sets.
+bool operator == (Set set1, Set set2) {
+    //- This part can be wrong. This only works if both sets are fitted.
+    if(set1.container.length() != set2.container.length())
+        return false;
+    //- Comparing each byte.
+    for(ui32 i = 0; i < set1.container.length(); i++)
+        if(set1.container.elements()[i] != set2.container.elements()[i])
+            return false;
+    return true;
 }
 
 

@@ -85,6 +85,22 @@ ui32 max(ui32 num1, ui32 num2) {
     return num2;
 }
 
+//- Minimum number of two unsigned integers.
+ui32 min(ui32 num1, ui32 num2) {
+    if(num1 > num2) return num2;
+    return num1;
+}
+
+//- Rotation operation over a byte
+byte RotRight(byte x, ui32 n) {
+    n %= 8;
+    return x >> n | x << (8-n);
+}
+
+//- Returns the complement of a byte, that is, interchange the ones by zeros and the zeros by ones.
+byte byteComplement(byte x) {
+    return 255-x;
+}
 
 
 

@@ -39,7 +39,14 @@ ui32 max(ui32* arr, ui32 length);
 //- Maximum number of two unsigned integers.
 ui32 max(ui32 num1, ui32 num2);
 
+//- Minimum number of two unsigned integers.
+ui32 min(ui32 num1, ui32 num2);
 
+//- Rotation operation over a byte
+byte RotRight(byte x, ui32 n);
+
+//- Returns the complement of a byte, that is, interchange the ones by zeros and the zeros by ones.
+byte byteComplement(byte x);
 
 
 

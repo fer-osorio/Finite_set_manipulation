@@ -3,6 +3,8 @@
 #define LEFT_BIT  0x80
 //- Most right bit of a byte.(00000001).
 #define RIGTH_BIT 0x01
+//- All bits are one except the most left one.
+#define LEFT_ZERO 0x7F
 
 #include"ByteArray.hpp"
 
@@ -48,8 +50,20 @@ Set operator + (Set set1, Set set2);
 //- Intersection of sets.
 Set operator * (Set set1, Set set2);
 
+//- Returns the set '{0,...,upperLimit-1} - set'.
+Set complement(Set set, ui32 upperLimit);
+
+//- Returns the complement of a set over its own container.
+Set complement(Set set);
+
+//- Set difference.
+Set operator - (Set set1, Set set2);
+
 //- Returns true if the number belongs to the set, otherwise it returns false.
 bool belongs(ui32 number, Set set);
+
+//- Equality between sets.
+bool operator == (Set set1, Set set2);
 
 //- Returns a exact copy of this object.
 Set copy(Set original);
