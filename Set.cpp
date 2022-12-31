@@ -180,6 +180,7 @@ Set complement(Set set, ui32 upperLimit) {
         elem_result[i] = byteComplement(elements[i]);
     for(;i < upperLimit; i++)
         elem_result[i] = 0xFF;
+    result.fit();
     return result;
 }
 
@@ -196,7 +197,7 @@ Set operator - (Set set1, Set set2) {
     //- 'Extracting' the elements of set2 from set1;
     for(i = 0; i < threshold; i++)
         res_elements[i] &= byteComplement(set2_elements[i]);
-
+    result.fit();
     return result;
 }
 
